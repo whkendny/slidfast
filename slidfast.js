@@ -191,6 +191,7 @@
       insertPages:function (text, originalLink) {
 
         var frame = getFrame();
+        //将Ajax响应文本写入框架,并让浏览器完成工作
         frame.write(text);
 
         //now we have a DOM to work with
@@ -221,7 +222,7 @@
             //we must use adoptNode()
             document.getElementById(location).appendChild(document.adoptNode(newPage));
           } catch (e) {
-            //todo graceful degradation?
+            //todo graceful degradation? (进行优雅降级?)
           }
           //this is where prefetching multiple "mobile" pages embedded in a single html page gets tricky.
           //we may have N embedded pages, so how do we know which node/page this should link/slide to?
@@ -260,7 +261,7 @@
 
         return img;
       },
-
+      //按同步或异步方法为给定连接读取资源
       fetchAndCache:function (async) {
         var links = slidfast.core.getUnconvertedLinks(document, 'fetch');
 
@@ -387,21 +388,21 @@
 
 
       flip:function () {
-        //get a handle on the flippable region
+        //get a handle on the flippable region(获得可翻转区域的句柄)
         var front = document.getElementById('front');
         var back = document.getElementById('back');
 
-        //just a simple way to see what the state is
+        //just a simple way to see what the state is(同样只是查看状态的一个简单方法)
         var classes = front.className.split(' ');
         var flippedClass = classes.indexOf('flipped');
 
         if (flippedClass >= 0) {
-          //already flipped, so return to original
+          //already flipped, so return to original (已经翻转,返回到原始状态)
           front.className = 'normal';
           back.className = 'flipped';
           flipped = false;
         } else {
-          //do the flip
+          //do the flip,进行翻转
           front.className = 'flipped';
           back.className = 'normal';
           flipped = true;
@@ -424,7 +425,7 @@
         var maxPos;
 
         function pageMove(event) {
-          //get position after transform
+          //get position after transform(获取变换后的位置)
           var curTransform = new window.WebKitCSSMatrix(window.getComputedStyle(page).webkitTransform);
           var pagePosition = curTransform.m41;
 
@@ -536,40 +537,50 @@
       init:function () {
         window.addEventListener('load', function (e) {
           if (navigator.onLine) {
-            //new page load
+            //new page load  (新页面加载)
             slidfast.network.processOnline();
           } else {
             //the app is probably already cached and (maybe) bookmarked...
+            //应用可能已经缓冲并且(可能)加入书签;
             slidfast.network.processOffline();
           }
         }, false);
 
         window.addEventListener("offline", function (e) {
           //we just lost our connection and entered offline mode, disable eternal link
+          //我们失去连接并进入离线模式, 禁用外部链接;
           slidfast.network.processOffline(e.type);
         }, false);
 
         window.addEventListener("online", function (e) {
           //just came back online, enable links
+          //返回在线状态,启用链接
           slidfast.network.processOnline(e.type);
         }, false);
 
         slidfast.network.setup();
       },
 
+      //在上线状态下检查连接类型,并相应地做出调整.
+      /*
+        fetchAndCache(true): 按异步方法为给定连接读取资源
+        fetchAndCache(false): 按同步方法为给定连接读取资源
+      */
+
       setup:function (event) {
         // create a custom object if navigator.connection isn't available
+        //如果navigator.connection连接不可用,创建一个自定义对象
         var connection = navigator.connection || {'type':'0'};
         if (connection.type === 2 || connection.type === 1) {
           //wifi/ethernet
-          //Coffee Wifi latency: ~75ms-200ms
-          //Home Wifi latency: ~25-35ms
+          //Coffee Wifi latency(咖啡厅wifi延时): ~75ms-200ms
+          //Home Wifi latency(家庭wifi延时): ~25-35ms
           //Coffee Wifi DL speed: ~550kbps-650kbps
           //Home Wifi DL speed: ~1000kbps-2000kbps
           slidfast.core.fetchAndCache(true);
         } else if (connection.type === 3) {
           //edge
-          //ATT Edge latency: ~400-600ms
+          //ATT Edge latency(延时): ~400-600ms
           //ATT Edge DL speed: ~2-10kbps
           slidfast.core.fetchAndCache(false);
         } else if (connection.type === 2) {
@@ -591,6 +602,7 @@
         checkAppCache();
 
         //reset our once disabled offline links
+        //复位曾经禁用的离线链接
         if (event) {
           for (var i = 0; i < disabledLinks.length; i += 1) {
             disabledLinks[i].onclick = null;
@@ -613,12 +625,15 @@
         }
       },
 
+      //利用DOM查找所有外部连接并将它们禁用,将用户永久地困在离线应用中.
       processOffline:function (event) {
         slidfast.network.setup();
         //disable external links until we come back - setting the bounds of app
+        //禁用外部链接,直到我们返回, 设置应用边界
         disabledLinks = slidfast.core.getUnconvertedLinks(document);
         var i;
         //helper for onlcick below
+        //onClick助手函数
         var onclickHelper = function (e) {
           return function (f) {
             alert('This app is currently offline and cannot access the hotness!');
@@ -629,7 +644,7 @@
         for (i = 0; i < disabledLinks.length; i += 1) {
 
           if (disabledLinks[i].onclick === null) {
-              //alert user we're not online
+              //alert user we're not online(警告用户,我们不在线)
               disabledLinks[i].onclick = onclickHelper(disabledLinks[i].href);
           }
         }
@@ -1038,5 +1053,3 @@
 
   })();
 })(window, document);
-
-

@@ -82,13 +82,13 @@ Flip Transition
     -o-transform-style: preserve-3d;
     -o-transition-duration: .5s;
 }
-
+/*不翻转*/
 .normal {
     -webkit-transform: rotateY(0deg);
     -moz-transform:  rotateY(0deg);
     -o-transform:  rotateY(0deg);
 }
-
+/*翻转*/
 .flipped {
     -webkit-user-select: element;
     -webkit-transform: rotateY(180deg);
