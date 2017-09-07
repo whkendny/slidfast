@@ -661,6 +661,8 @@ body {
   margin-top: 40px;
   color: #6f7585;
   font-size: 28px;
+  width: 150px;
+  margin: 15px auto 0 auto;
 }
 .pop-up .pop-foot {
   font-size: 0;

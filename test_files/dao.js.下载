@@ -98,11 +98,6 @@
         postNewBranchInfo: function (url, params, success, fail) {
             return dao.request.post(url, params, success, fail);
         },
-        getBranchList: function (url, params, success, fail) {
-            var url = url ? url : '/adminapi/branch/branch-list',
-                params = params ? params : {'page':1, 'page_num':100};
-            return dao.request.get(url, params, success, fail);
-        },
     }
 
     dao.request = {
