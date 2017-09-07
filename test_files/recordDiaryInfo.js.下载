@@ -1,0 +1,1118 @@
+/**
+ * Created by wedo on 2017/8/1.
+ */
+(function () {
+    app = new Vue({
+        el: '#js_diary_content',
+        data:{
+            'navTab': M.getUrlParam('nav') && M.getUrlParam('nav') != 'null'? M.getUrlParam('nav'):1,
+            'popUp': false,
+            'popMatte': false,
+            'popDiet': false,
+            'dataLists':[],
+            'popUpObject':{
+                'popUpTitle':'运动记录',
+                'popUpTitleEn': 'SPORT',
+                'popUpTitleUnit': '步',
+                'value': ''
+            },
+            'addTipsShow': false,
+            'focusStatus': false,
+            'sleepTime': '--:--',
+            'sleepHourIndex': 22,
+            'sleepMinuteIndex': 30,
+            'upTime': '--:--',
+            'upHourIndex': 6,
+            'upMinuteIndex': 30,
+            'sleepQual': '--',
+            'sleepQualIndex': 1,
+            'sleepRate': '--',
+            'stepNum': '--',
+            'weightNum': '--',
+            'dietArray':[ {
+                "user_diet_food_time": "--:--",
+                "user_diet_hunger_level": "--",
+                "user_diet_satiety_level": "--",
+                'eat_food_list':[
+                    {
+                        'user_diet_food_name': "",
+                        'user_diet_food_units':"",
+                        'user_diet_id' :"0"
+                    }
+                ]
+            }],
+            'editDietType': null,
+            'dietId': null,
+            'delSucc': false,
+            'userDietId': null,
+            'eatTime': '--:--',
+            'beforeEatFeel': '--',
+            'afterEatFeel':'--',
+            'foodObject': {
+                'user_diet_food_units': '--',
+                'user_diet_food_name': '--'
+            },
+            'FoodItem':'',
+            'foodListArray':[],
+
+            'eatDietTimeHourIndex': M.time.get_now_time().hour,
+            'eatDietTimeMinuteIndex': M.time.get_now_time().minute,
+            'eatDietBeforeIndex': 3,
+            'eatDietAfterIndex': 3,
+
+            'user_diet_id': 0,
+            'show':{
+                'write_body_state' : "1",
+                'write_diet_state' : "1",
+                'write_exercise_state': "1", //显示
+                'yesterday_done' : 1,  //不显示
+            },
+            'calendarShow': false,
+            'currentDay': 1,
+            'currentMonth': 1,
+            'currentYear': 1970,
+            'currentWeek': 1,
+            'rightArrow': false,
+            'leftArrow': false,
+            'days': [],
+            'goalMonth': 0,
+            'goalDate':0,
+            'goalDateInfo': '',
+            'choice_day': 0,
+            'selectTimeDot': [],
+            'startTime': '',
+            'endTime': '',
+            'canClick': false,
+            'doneDate': M.getUrlParam('date') && M.getUrlParam('date') != 'null'? M.getUrlParam('date'):M.time.todayDate(), //获取当前处理的时间
+            'doneDateStamp': M.time.format_to_stamp(M.getUrlParam('date')? M.getUrlParam('date'):M.time.todayDate()),
+            'doneDateStampYesterday': M.time.format_to_stamp(M.time.todayDate()) - 86400,
+            /*时间数据*/
+            'data1': [
+                {
+                    text: '00',
+                    value: '00'
+                }, {
+                    text: '01',
+                    value: '01'
+                },
+                {
+                    text: '02',
+                    value: '02'
+                },
+                {
+                    text: '03',
+                    value: '03'
+                },
+                {
+                    text: '04',
+                    value: '04'
+                },
+                {
+                    text: '05',
+                    value: '05'
+                },
+                {
+                    text: '06',
+                    value: '06'
+                },
+                {
+                    text: '07',
+                    value: '07'
+                },
+                {
+                    text: '08',
+                    value: '08'
+                },
+                {
+                    text: '09',
+                    value: '09'
+                },
+                {
+                    text: '10',
+                    value: '10'
+                },
+                {
+                    text: '11',
+                    value: '11'
+                },
+                {
+                    text: '12',
+                    value: '12'
+                },
+                {
+                    text: '13',
+                    value: '13'
+                },
+                {
+                    text: '14',
+                    value: '14'
+                },
+                {
+                    text: '15',
+                    value: '15'
+                },
+                {
+                    text: '16',
+                    value: '16'
+                },
+                {
+                    text: '17',
+                    value: '17'
+                },
+                {
+                    text: '18',
+                    value: '18'
+                },
+                {
+                    text: '19',
+                    value: '19'
+                },
+                {
+                    text: '20',
+                    value: '20'
+                },
+                {
+                    text: '21',
+                    value: '21'
+                },
+                {
+                    text: '22',
+                    value: '22'
+                },
+                {
+                    text: '23',
+                    value: '23'
+                },
+
+            ],
+            'data2': [{
+                text: '时'
+            }],
+            'data3': [
+                {
+                    text: '00',
+                    value: '00'
+                },
+                {
+                    text: '01',
+                    value:'01'
+                },
+                {
+                    text: '02',
+                    value:'02'
+                },
+                {
+                    text: '03',
+                    value: '03'
+                },
+                {
+                    text: '04',
+                    value: '04'
+                },
+                {
+                    text: '05',
+                    value: '05'
+                },
+                {
+                    text: '06',
+                    value: '06'
+                },
+                {
+                    text: '07',
+                    value:'07'
+                },
+                {
+                    text: '08',
+                    value: '08'
+                },
+                {
+                    text: '09',
+                    value: '09'
+                },
+                {
+                    text: '10',
+                    value: '10'
+                },
+                {
+                    text: '11',
+                    value: '11'
+                },
+                {
+                    text: '12',
+                    value: '12'
+                },{
+                    text: '13',
+                    value: '13'
+                },{
+                    text: '14',
+                    value: '14'
+                },{
+                    text: '15',
+                    value: '15'
+                },{
+                    text: '16',
+                    value: '16'
+                },{
+                    text: '17',
+                    value: '17'
+                },{
+                    text: '18',
+                    value: '18'
+                },{
+                    text: '19',
+                    value: '19'
+                },{
+                    text: '20',
+                    value: '20'
+                },{
+                    text: '21',
+                    value: '21'
+                },{
+                    text: '22',
+                    value: '22'
+                },{
+                    text: '23',
+                    value: '23'
+                },{
+                    text: '24',
+                    value: '24'
+                },{
+                    text: '25',
+                    value: '25'
+                },{
+                    text: '26',
+                    value: '26'
+                },{
+                    text: '27',
+                    value: '27'
+                },{
+                    text: '28',
+                    value: '28'
+                },{
+                    text: '29',
+                    value: '29'
+                },{
+                    text: '30',
+                    value: '30'
+                },{
+                    text: '31',
+                    value: '31'
+                },{
+                    text: '32',
+                    value: '32'
+                },{
+                    text: '33',
+                    value: '33'
+                },{
+                    text: '34',
+                    value: '34'
+                },{
+                    text: '35',
+                    value: '35'
+                },{
+                    text: '36',
+                    value: '36'
+                },{
+                    text: '37',
+                    value: '37'
+                },{
+                    text: '38',
+                    value: '38'
+                },{
+                    text: '39',
+                    value: '39'
+                },{
+                    text: '40',
+                    value: '40'
+                },{
+                    text: '41',
+                    value: '41'
+                },{
+                    text: '42',
+                    value: '42'
+                },{
+                    text: '43',
+                    value: '43'
+                },{
+                    text: '44',
+                    value: '44'
+                },{
+                    text: '45',
+                    value: '45'
+                },{
+                    text: '46',
+                    value: '46'
+                },{
+                    text: '47',
+                    value: '47'
+                },{
+                    text: '48',
+                    value: '48'
+                },{
+                    text: '49',
+                    value: '49'
+                },{
+                    text: '50',
+                    value: '50'
+                },{
+                    text: '51',
+                    value: '51'
+                },{
+                    text: '52',
+                    value: '52'
+                },{
+                    text: '53',
+                    value: '53'
+                },{
+                    text: '54',
+                    value: '54'
+                },{
+                    text: '55',
+                    value: '55'
+                },{
+                    text: '56',
+                    value: '56'
+                },{
+                    text: '57',
+                    value: '57'
+                },{
+                    text: '58',
+                    value: '58'
+                },{
+                    text: '59',
+                    value: '59'
+                },
+            ],
+            'data4': [{
+                text: '分'
+            }],
+        },
+        created: function () {
+            this.initData();
+
+            var d = new Date(this.doneDate);
+            this.goalMonth = d.getMonth() + 1;
+            this.goalDate =  d.getDate();
+            var nowTime = new Date();
+            if(nowTime.getFullYear() == d.getFullYear() && nowTime.getMonth() == d.getMonth() && nowTime.getDate() == d.getDate()){
+                this.goalDateInfo = '今天';
+            }else {
+                this.goalDateInfo = '';
+            }
+            this.initCalendar(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1)); /*d.getDate()*/
+        },
+        directives: {
+            focus: {
+                inserted: function (el, value) {
+                    if (value) {
+                        el.focus();
+                    }
+                }
+            }
+        },
+        methods: {
+            dietFeelToNum: function (str) {
+                switch (str){
+                    case '饥饿': return 0; break;
+                    case '饿': return  1; break;
+                    case '有点饿': return 2; break;
+                    case '适中': return  3; break;
+                    case '刚刚饱': return 4; break;
+                    case '吃饱了': return 5; break;
+                    default: return 1;
+                }
+            },
+            initData: function () {
+                var dao = DAO.data;
+                var _that = this;
+                var params ={
+                    'date': _that.doneDate
+                }
+                dao.getDataInfo('/api/client/client-email', params, function (res) {
+                    if(res.code){
+                        var data = res.data;
+                        if(data.show){
+                            app.show = data.show;
+                        }
+                       if(data.body_state){
+                           var body_state = data.body_state;
+                           app.dataLists = data;
+                           if(body_state.sack_time){
+                               var sleepTimeArr = body_state.sack_time.split(':');
+                               app.sleepHourIndex = sleepTimeArr[0];
+                               app.sleepMinuteIndex = sleepTimeArr[1];
+                           }
+                           app.sleepTime = body_state.sack_time? body_state.sack_time : '--:--';
+                           if(body_state.up_time){
+                               var upTimeArr = body_state.up_time.split(':');
+                               app.upHourIndex = upTimeArr[0];
+                               app.upMinuteIndex = upTimeArr[1];
+                           }
+                           app.upTime = body_state.up_time? body_state.up_time : '--:--';
+
+                           app.sleepRate = parseInt(body_state.side_heartbeat, 10)? body_state.side_heartbeat: '--';
+                           app.stepNum = parseInt(body_state.step, 10)? body_state.step : '--';
+                           app.weightNum = parseInt(body_state.weight, 10)? body_state.weight : '--';
+
+                           if(data.diet.length){
+                               app.dietArray = data.diet;
+                           }
+                           if(parseInt(body_state.sleep_state, 10)){
+                               app.sleepQualIndex = parseInt(body_state.sleep_state, 10) -1;
+                           }
+                           if(body_state.sleep_state == 0){
+                               app.sleepQual = '--';
+                           }else if(body_state.sleep_state == 1){
+                               app.sleepQual = '好';
+                           }else if(body_state.sleep_state == 2){
+                               app.sleepQual = '一般';
+                           }else if(body_state.sleep_state == 3){
+                               app.sleepQual = '差';
+                           }
+                       }
+                    }else {
+                        alert(res.msg)
+                    }
+                })
+            },
+            navClick: function (key) {
+                app.navTab = key;
+            },
+            postSportItem: function (type) {
+                if(type == 'sleepRate'){
+                    app.popUpObject = {
+                        'popUpTitle':'侧卧心率',
+                        'popUpTitleEn': 'RATE',
+                        'popUpTitleUnit': '次/分钟',
+                        'value': app.sleepRate
+                    }
+                }else if(type == 'step'){
+                    app.popUpObject = {
+                        'popUpTitle':'行走步数',
+                        'popUpTitleEn': 'FOOTSTEP',
+                        'popUpTitleUnit': '步',
+                        'value': app.stepNum
+                    }
+                }else if(type == 'weight'){
+                    app.popUpObject = {
+                        'popUpTitle':'体重',
+                        'popUpTitleEn': 'WEIGHT',
+                        'popUpTitleUnit': 'KG',
+                        'value': app.weightNum
+                    }
+                }
+                app.focusStatus = true;
+                app.popUp = true;
+                app.popMatte = true;
+            },
+            addFoodItem: function () {
+              var foodStr = app.FoodItem;
+                foodStr = $.trim(foodStr);
+                if(foodStr){
+                  var foodArr = foodStr.replace(/(^\s*)|(\s*$)/g, "").split(/\s+/);
+                    if(!foodArr[1]){
+                        foodArr[1] = '';
+                    }
+                    app.foodObject.user_diet_food_name = foodArr[0];
+                    foodArr.splice(0, 1);
+                    app.foodObject.user_diet_food_units = foodArr.join('');
+                    app.foodListArray.push(app.foodObject);
+                    $('.foot-item-box').scrollTo({dir: 'top', toPos: 1100,  durTime:200});
+                }
+              app.foodObject = {
+                  'user_diet_food_units': '',
+                  'user_diet_food_name': ''
+              }
+                app.FoodItem = '';
+                $('.js-diet-input').focus()
+                return false;
+            },
+
+            delFoodItem: function (index) {
+                app.foodListArray.splice(index,1);
+            },
+            addDiet: function (index, dietId, user_food_list) {
+                app.popMatte = true;
+                app.popDiet = true;
+                app.editDietType = index;
+                app.dietId = dietId;
+              if(dietId != -1 && dietId != "--:--"){ //编辑
+                  app.user_diet_id = user_food_list[0]['user_diet_id'];
+                  app.eatTime = app.dietArray[index]['user_diet_food_time'];
+                  console.log('542:-',app.dietArray[index]['user_diet_food_time'])
+                  if(app.eatTime != "--:--" && app.eatTime){
+                      var eatTimeArr = app.eatTime.split(':');
+                      app.eatDietTimeHourIndex = eatTimeArr[0];
+                      app.eatDietTimeMinuteIndex = eatTimeArr[1];
+                  }
+
+                  app.beforeEatFeel = app.dietArray[index]['user_diet_hunger_level'];
+                  if(app.beforeEatFeel!= '--'){
+                      app.eatDietBeforeIndex = app.dietFeelToNum(app.beforeEatFeel);
+                  }
+                  app.afterEatFeel = app.dietArray[index]['user_diet_satiety_level'];
+                  if(app.afterEatFeel != '--'){
+                      app.eatDietAfterIndex = app.dietFeelToNum(app.afterEatFeel);
+                  }
+
+                  app.foodListArray = app.dietArray[index]['eat_food_list'];
+                  app.userDietId = app.dietArray[index]['user_diet_id'];
+              }else{ //添加
+                  app.eatTime = '--:--';
+                  app.beforeEatFeel = '--';
+                  app.afterEatFeel = '--';
+                  app.foodListArray = [];
+                  app.userDietId = 0;
+              }
+            },
+            delDietBtn: function () {
+               var dao = DAO.data;
+               var params = {
+                   'user_diet_number': app.doneDate,
+                   'user_diet_food_time': app.eatTime
+               }
+               if(app.dietId == -1){  //编辑
+                   return false;
+               }
+               dao.postDataInfo('/api/client/del-diet', params, function (res) {
+                   popupTips(res.msg);
+                   if(res.code){
+                       app.dietArray.splice(app.editDietType, 1);
+                       if(app.dietArray.length == 0){
+                            app.dietArray = [ {
+                                "user_diet_id": "-1",
+                                "user_diet_food_time": "--:--",
+                                "user_diet_hunger_level": "--",
+                                "user_diet_food_name": "",
+                                "user_diet_satiety_level": "--",
+                                'eat_food_list':[
+                                    {
+                                        'user_diet_food_name': "",
+                                        'user_diet_food_units':"",
+                                        'user_diet_id' :"0"
+                                    }
+                                ]
+                            }]
+                           app.eatTime = '--:--';
+                           app.beforeEatFeel = '--';
+                           app.afterEatFeel = '--';
+                           app.foodListArray={
+                           }
+
+                       }
+                       // app.popUp = false;
+                       // app.popMatte = false;
+                       // app.popDiet = false;
+                       // app.calendarShow = false;
+                       app.cancelBtn();
+                   }
+               })
+            },
+            delRecordItem: function () {
+                var url = '/api/client/save-body-state';
+                if(app.popUpObject.popUpTitle == '侧卧心率'){
+                    app.sleepRate = '';
+                    var params = {
+                        'date' : app.doneDate,
+                        'side_heartbeat': app.sleepRate
+                    }
+                    submitData(url, params)
+                }else if(app.popUpObject.popUpTitle == '行走步数'){
+                    app.stepNum = '';
+                    var params = {
+                        'date' : app.doneDate,
+                        'step': app.stepNum
+                    }
+                    submitData(url, params)
+                }else if(app.popUpObject.popUpTitle == '体重'){
+                    app.weightNum = '';
+                    var params = {
+                        'date' : app.doneDate,
+                        'weight': app.weightNum
+                    }
+                    submitData(url, params)
+                }
+                if(app.delSucc){
+                    popupTips('成功');
+                }
+                app.popUp = false;
+                app.popMatte = false;
+            },
+            sureBtn: function () {
+                var url = '/api/client/save-body-state';
+                if(app.popUpObject.popUpTitle == '侧卧心率'){
+                    app.sleepRate = app.popUpObject.value;
+                    var params = {
+                        'date' : app.doneDate,
+                        'side_heartbeat': app.sleepRate
+                    }
+                    submitData(url, params)
+                }else if(app.popUpObject.popUpTitle == '行走步数'){
+                    app.stepNum = app.popUpObject.value;
+                    var params = {
+                        'date' : app.doneDate,
+                        'step': app.stepNum
+                    }
+                    submitData(url, params)
+                }else if(app.popUpObject.popUpTitle == '体重'){
+                    app.weightNum = app.popUpObject.value;
+                    var params = {
+                        'date' : app.doneDate,
+                        'weight': app.weightNum
+                    }
+                    submitData(url, params)
+                }
+                app.popUp = false;
+                app.popMatte = false;
+            },
+            sureAddDietBtn: function () {
+                var dao = DAO.data;
+                if(app.FoodItem){
+                    app.addTipsShow = true;
+                    $('.js-diet-input').focus();
+                    setTimeout(function () {
+                        app.addTipsShow = false;
+                    }, 1600)
+                    return false;
+                }
+                if(!app.foodListArray.length){
+                    popupTips('请添加摄入的食物');
+                    return false;
+                }
+
+                var params  = {
+                    'user_diet_number': app.doneDate,
+                    'user_diet_food_time': app.eatTime,
+                    'user_diet_hunger_level': app.beforeEatFeel,
+                    'user_diet_satiety_level': app.afterEatFeel,
+                    'eat_food_list': app.foodListArray,
+                    'user_diet_id': app.user_diet_id,
+                }
+                dao.postDataInfo('/api/client/save-diet', params, function (res) {
+                    if(res.code){
+                        if(app.dietId == -1 ){ //添加
+                            if(app.dietArray[0]['user_diet_id'] == -1){
+                                app.dietArray.splice(0, 1);
+                            }
+                            app.dietArray.push(params);
+                            $('.diet-list').scrollTo({dir: 'top', toPos: 1100,  durTime:200});
+                        }
+                        // app.initData();
+                        app.cancelBtn();
+                        popupTips(res.msg);
+                        window.location.href = '/wap/record/record-diary?date='+M.getUrlParam('date')+'&nav=4';
+                    }else {
+                        popupTips(res.msg);
+                        return false;
+                    }
+                })
+
+            },
+            cancelBtn: function (type) {
+                if(type == 1){
+                    window.location.href = '/wap/record/record-diary?date='+M.getUrlParam('date')+'&nav=4';
+                }
+
+                app.popUp = false;
+                app.popMatte = false;
+                app.popDiet = false;
+                app.calendarShow = false;
+            },
+            closeWin: function () {
+                app.popMatte = false;
+                app.calendarShow = false;
+            },
+            selectBodyState: function (type) {
+                if(type == 'normal'){
+                    app.dataLists.user_is_disease = 0;
+                    app.dataLists.user_is_period = 0;
+                    app.dataLists.user_is_tired = 0;
+                }else if(type == 'tired'){
+                    if(app.dataLists.user_is_tired == 0){
+                        app.dataLists.user_is_tired = 1;
+                    }else {
+                        app.dataLists.user_is_tired = 0;
+                    }
+                }else if(type == 'disease'){
+                    if(app.dataLists.user_is_disease == 0){
+                        app.dataLists.user_is_disease = 1;
+                    }else {
+                        app.dataLists.user_is_disease = 0;
+                    }
+                }else if(type == 'period'){
+                    if(app.dataLists.user_is_period == 0){
+                        app.dataLists.user_is_period = 1;
+                    }else {
+                        app.dataLists.user_is_period = 0;
+                    }
+                }
+                var url = '/api/client/save-body-state';
+                var params = {
+                    'date': app.doneDate,
+                    'is_tired': app.dataLists.user_is_tired,
+                    'is_disease': app.dataLists.user_is_disease,
+                    'is_period': app.dataLists.user_is_period,
+                }
+                submitData(url, params);
+            },
+
+            showCalendar: function () {
+                if(app.calendarShow){
+                    app.calendarShow = false;
+                }else {
+                    app.calendarShow = true;
+                }
+            },
+            initCalendar: function (cur) {
+                var date;
+                //当前时间的日
+                if(cur) {
+                    date = new Date(cur); //指定时间的 日
+                } else {
+                    date = new Date();  //（今天）
+                }
+                this.currentDay = date.getDate();
+                this.currentYear = date.getFullYear();
+                this.currentMonth = date.getMonth() + 1;
+                this.currentWeek = date.getDay(); // 1...6,0
+                if(this.currentWeek == 0) {
+                    this.currentWeek = 7;
+                }
+                var str = this.formatDate(this.currentYear, this.currentMonth, this.currentDay); //转化为2017-06-21模式
+
+                // console.log("today:" + str + ",星期:" + this.currentWeek);
+                this.days.length = 0;  //清空days
+                // 今天是周日，放在第一行第7个位置，前面6个
+                for(var i = this.currentWeek - 1; i >= 0; i--) {
+                    var d = new Date(str);
+                    d.setDate(d.getDate() - i);
+                    this.days.push(d);
+                }
+                /*
+                * 通过本周 的天数来调整 行数 42 or 35
+                * */
+                for(var i = 1; i <=  42 - this.currentWeek; i++) { /*35*/
+                    var d = new Date(str);
+                    d.setDate(d.getDate() + i);
+                    this.days.push(d);
+                }
+
+                var dao = DAO.data;  //获取
+                var month = this.currentMonth;
+                if(month>0 && month<9){
+                    month = '0' + month;
+                }
+                var params = {
+                    'month': month,
+                    'type': 1
+                }
+                dao.getDataInfo('/api/client/complete-calendar',params, function (res) {
+                    if(res.code){
+                        var data = res.data;
+                        var currYear = app.currentYear;
+                        var currMonth = app.currentMonth;
+                        var nowTime = M.time.todayDate();
+                        app.endTime = data.end_time;
+                        app.startTime = data.start_time;
+                        app.selectTimeDot = data.list;
+                        var d = app.doneDate;
+
+                        var startDateArr = data.start_time.split('-');  //服务期开始
+                        var endDateArr = data.end_time.split('-');  //服务期结束
+                        var nowTimeArr = nowTime.split('-');
+                        var currDate = M.time.todayDate();
+                        var currDateArr = d.split('-');
+                        if(parseInt(startDateArr[0], 10) < parseInt(currYear, 10) ||(parseInt(startDateArr[0], 10) == parseInt(currYear, 10) && parseInt(startDateArr[1], 10) < parseInt(currMonth,10))  ){
+                            app.leftArrow = true;
+                        }else {
+                            app.leftArrow = false;
+                        }
+                        if(parseInt(nowTimeArr[0], 10) <= parseInt(currYear, 10) && parseInt(currMonth, 10) >= parseInt(nowTimeArr[1],10) ){
+                            app.rightArrow = false;
+                        }else {
+                            app.rightArrow = true;
+                        }
+                    }
+                })
+            },
+            showDisable: function (day) {
+                // var endTime = this.endTime;
+                var startTime = this.startTime;
+                if(day.getTime()> new Date().getTime()){
+                    return {'other-month': 1};
+                }
+                if((new Date(startTime).getTime())>day.getTime()){
+                    return {'other-month': 1};
+                }
+                if((new Date(M.time.todayDate()).getTime())<day.getTime()){
+                    return {'other-month': 1};
+                }
+            },
+            // 当前日期
+            pick: function(day) {
+                if(event.srcElement.className == 'other-month' || event.srcElement.className == 'other-month-day other-month'){
+                    popupTips('该时间不能选');
+                }else {
+                    var d = new Date();
+                    app.choice_day = day.getTime();
+                    this.goalMonth =  day.getMonth() + 1;
+                    this.goalDate =   day.getDate();
+                    if(d.getFullYear() == day.getFullYear() && d.getMonth() == day.getMonth() && d.getDate() == day.getDate()){
+                        this.goalDateInfo = '今天';
+                    }else {
+                        this.goalDateInfo = '';
+                    }
+                    app.doneDate = this.formatDate(day.getFullYear(), day.getMonth() + 1, day.getDate());
+                    window.location.href = '/wap/record/record-diary?date='+ app.doneDate;
+                }
+
+            },
+            // 上一月
+            pickPre: function(year, month) {
+                var date_arr = app.startTime.split('-');
+                if(!(parseInt(date_arr[0], 10) > parseInt(year, 10) || parseInt(date_arr[1], 10) >= parseInt(month,10))){
+                    //  setDate(0); 上月最后一天
+                    //  setDate(-1); 上月倒数第二天
+                    //  setDate(dx) 参数dx为 上月最后一天的前后dx天
+                    var d = new Date(this.formatDate(year, month, 1));
+                    d.setDate(0);
+
+                    this.initCalendar(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+                    // app.rightArrow = true;
+                }
+            },
+            // 下一月
+            pickNext: function(year, month) {
+                var date_arr = M.time.todayDate().split('-');
+                if(!(parseInt(date_arr[0], 10) ==  parseInt(year, 10) && parseInt(date_arr[1], 10)-1 < parseInt(month,10))){
+                    var d = new Date(this.formatDate(year, month, 1));
+                    d.setDate(42);
+                    this.initCalendar(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+                }
+            },
+            // 当前年月
+            pickYear: function(year, month) {
+//						alert(year + "," + month);
+            },
+            // 返回 类似 2016-01-02 格式的字符串
+            formatDate: function(year, month, day) {
+                var y = year;
+                var m = month;
+                if(m < 10) m = "0" + m;
+                var d = day;
+                if(d < 10) d = "0" + d;
+                return y + "-" + m + "-" + d
+            },
+        }
+    })
+
+    //获取当前的时分秒
+    function getNowTime() {
+        var date = new Date();
+        var time = {
+            'hour': date.getHours(),
+            'minute': date.getMinutes()
+        }
+        return time;
+    }
+    //提交接口函数
+    function submitData(url, params) {
+        var dao = DAO.data;
+        dao.postDataInfo(url, params, function (res) {
+            if(res.code){
+                app.delSucc = true;
+                app.initData();
+            }else {
+                popupTips(res.msg);
+            }
+        })
+    }
+
+
+    //选择入睡时间
+    $('#js_sleep_time').on(M.click_tap, function () {
+        var picker1 = new Picker({
+            data: [app.data1, app.data2, app.data3, app.data4],
+        });
+        picker1.selectedIndex = [app.sleepHourIndex, 0, app.sleepMinuteIndex];
+        picker1.show();
+        picker1.on('picker.valuechange', function (selectedVal, selectedIndex) {
+            if(selectedVal){
+                var selecTime = selectedVal[0]+ ':' + selectedVal[2];
+                app.sleepTime = selecTime;
+            }
+        });
+
+        //触发"确定的"点击事件
+        picker1.on('picker.select', function (selectedVal, selectedIndex) {
+            var selecTime = selectedVal[0]+ ':' + selectedVal[2];
+            var params = {
+                'date': app.doneDate,
+                'sack_time':selecTime
+            }
+            var url = '/api/client/save-body-state';
+            submitData(url, params);
+            picker1 = null;
+        })
+    });
+
+    //起床时间
+    $('#js_up_time').on(M.click_tap, function () {
+        var picker2 = new Picker({
+            data: [app.data1, app.data2, app.data3, app.data4],
+        });
+        picker2.selectedIndex = [app.upHourIndex, 0, app.upMinuteIndex, 0];
+        picker2.show();
+        picker2.on('picker.valuechange', function (selectedVal, selectedIndex) {
+            if(selectedVal){
+                var selecTime = selectedVal[0]+ ':' + selectedVal[2];
+                app.upTime = selecTime;
+            }
+        });
+        picker2.on('picker.select', function (selectedVal, selectedIndex) {
+            var selecTime = selectedVal[0]+ ':' + selectedVal[2];
+            var params = {
+                'date': app.doneDate,
+                'up_time':selecTime
+            }
+            var url = '/api/client/save-body-state';
+            submitData(url, params);
+            picker2 = null;
+        })
+    })
+
+
+    //选择睡眠质量
+    $('#js_sleep_qual').on(M.click_tap, function () {
+        var array = [
+            {
+                text: '好',
+                value: '好'
+            },
+            {
+                text: '一般',
+                value: '一般'
+            },
+            {
+                text: '差',
+                value: '差'
+            }
+        ];
+        var sleep = new Picker({
+            data: [array],
+        });
+        sleep.selectedIndex = [app.sleepQualIndex];
+        sleep.show();
+        sleep.on('picker.valuechange', function (selectedVal, selectedIndex) {
+            app.sleepQual = selectedVal;
+            app.sleep_state_id = sleepQualToNum(selectedVal);
+        });
+        sleep.on('picker.select', function (selectedVal, selectedIndex) {
+            var sleep_state_id =  sleepQualToNum(selectedVal);
+            var params = {
+                'date': app.doneDate,
+                'sleep_state': sleep_state_id
+            }
+            var url = '/api/client/save-body-state';
+            submitData(url, params);
+            sleep = null;
+        })
+    })
+
+    function sleepQualToNum(selectedVal) {
+        var res = null;
+        if(selectedVal =='好'){
+            res = 1;
+        }else if(selectedVal == '一般'){
+            res = 2;
+        }else if(selectedVal == '差'){
+            res = 3;
+        }
+        return res;
+    }
+
+
+    //就餐时间
+    $('#js_eat_time').on(M.click_tap, function () {
+        var picker3 = new Picker({
+            data: [app.data1, app.data2, app.data3, app.data4]
+        });
+        picker3.selectedIndex = [app.eatDietTimeHourIndex, 0, app.eatDietTimeMinuteIndex, 0];
+        picker3.show();
+        picker3.on('picker.valuechange', function (selectedVal, selectedIndex) {
+            if(selectedVal){
+                var selecTime = selectedVal[0]+ ':' + selectedVal[2];
+                app.eatTime = selecTime
+            }
+        });
+        picker3 = null;
+    })
+
+    /* 0饥饿（非常饿） 1饿（正常该吃饭） 2有点饿（可吃可不吃） 3适中（不饿也不饱） 4刚刚饱 （刚有饱的感觉） 5吃饱了（吃撑了）*/
+    var array = [
+        {
+            text: '饥饿(非常饿)',
+            value: '饥饿'
+        },
+        {
+            text: '饿(正常该吃饭)',
+            value: '饿'
+        },
+        {
+            text: ' 有点饿(可吃可不吃)',
+            value: '有点饿'
+        },
+        {
+            text: '适中(不饿也不饱)',
+            value: '适中'
+        },
+        {
+            text: '刚刚饱(刚有饱的感觉)',
+            value: '刚刚饱'
+        },
+        {
+            text: '吃饱了(吃撑了)',
+            value: '吃饱了'
+        },
+    ];
+    //餐前饥饿感
+    $('#js_eat_before_feel').on(M.click_tap, function () {
+        var dite1 = new Picker({
+            data: [array]
+        });
+        app.eatDietBeforeIndex = dietStrToIndex(app.beforeEatFeel);
+        dite1.selectedIndex = [app.eatDietBeforeIndex];
+        dite1.show();
+        dite1.on('picker.valuechange', function (selectedVal, selectedIndex) {
+            app.beforeEatFeel = selectedVal[0];
+        });
+        dite1 = null;
+    });
+
+    $('#js_eat_after_feel').on(M.click_tap, function () {
+        var dite2 = new Picker({
+            data: [array]
+        });
+        app.eatDietAfterIndex = dietStrToIndex(app.afterEatFeel);
+        dite2.selectedIndex = [app.eatDietAfterIndex];
+        dite2.show();
+        dite2.on('picker.valuechange', function (selectedVal) {
+            app.afterEatFeel = selectedVal[0];
+        });
+        dite2 = null;
+    })
+
+    function dietStrToIndex(str) {
+        var index = null;
+        switch (str){
+            case '饥饿':    index = 0; break;
+            case '饿':      index = 1; break;
+            case '有点饿':   index = 2; break;
+            case '适中':     index = 3; break;
+            case '刚刚饱':   index = 4; break;
+            case '吃饱了':   index = 5; break;
+            default: index = 3;
+        }
+        return index;
+    }
+})();

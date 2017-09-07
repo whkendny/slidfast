@@ -1,0 +1,918 @@
+body {
+  /*IOS禁止页面滑动*/
+  background-color: #080809;
+}
+.icon {
+  background: url("/img/wap/record-icon.png?v=1") no-repeat;
+}
+.wap-content {
+  height: 100%;
+}
+#js_diary_content {
+  max-width: 750px;
+  height: 100%;
+  background-color: #080809;
+}
+#record-content {
+  background: url("/img/wap/record-bg.png") no-repeat;
+  width: 750px;
+}
+#record-content .write-nav .nav-notice {
+  color: #9b9b9b;
+  padding-top: 15%;
+  margin-bottom: 6px;
+}
+#record-content .write-nav .icon-speak {
+  height: 22px;
+  width: 23px;
+  margin-left: 25px;
+  margin-right: 8px;
+  background-position: 0px -1615px;
+}
+#record-content .write-nav .speak-info {
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+#record-content .nav-content {
+  font-size: 0;
+  margin: auto 4%;
+  display: -webkit-box;
+  display: block;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 92%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#record-content .icon-sleep,
+#record-content .icon-sleep-active {
+  height: 33px;
+  width: 46px;
+  margin: 20px auto;
+}
+#record-content .icon-sleep {
+  background-position: 0px 0px;
+}
+#record-content .icon-sleep-active {
+  background-position: 0 -60px;
+}
+#record-content .icon-sport,
+#record-content .icon-sport-active {
+  height: 39px;
+  width: 33px;
+  margin: 20px auto;
+}
+#record-content .icon-sport {
+  background-position: 0 -122px;
+}
+#record-content .icon-sport-active {
+  background-position: 0 -188px;
+}
+#record-content .icon-weight,
+#record-content .icon-weight-active {
+  height: 37px;
+  width: 36px;
+  margin: 20px auto;
+}
+#record-content .icon-weight {
+  background-position: 0 -255px;
+}
+#record-content .icon-weight-active {
+  background-position: 0 -325px;
+}
+#record-content .icon-diet,
+#record-content .icon-diet-active {
+  height: 37px;
+  width: 44px;
+  margin: 20px auto;
+}
+#record-content .icon-diet {
+  background-position: -1px -391px;
+}
+#record-content .icon-diet-active {
+  background-position: 0 -469px;
+}
+#record-content .nav-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+  display: inline-block;
+  width: 24%;
+}
+#record-content .item-title {
+  color: #5e6471;
+  font-size: 26px;
+  margin-top: 25px;
+}
+#record-content .active {
+  color: #FFFFFF;
+}
+.sleep-section,
+.weight-section,
+.diet-content {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+.sleep-section,
+.weight-section {
+  margin: 70px 4% 30px  4%;
+}
+.diet-content {
+  margin: 70px 4% 0px  4%;
+}
+.diet-section {
+  background-color: #080809;
+  padding-bottom: 40px;
+}
+.sleep-section {
+  padding: 20px 0;
+}
+.diet-content {
+  padding: 10px 0;
+}
+.weight-section {
+  padding: 20px 0 0 0;
+}
+.sleep-section,
+.diet-content {
+  /*步数*/
+  /*身体记录*/
+  /*身体状态*/
+  /*饮食*/
+}
+.sleep-section .header-box,
+.diet-content .header-box {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0 20px 0;
+}
+.sleep-section .arrow-up,
+.diet-content .arrow-up {
+  width: 0;
+  height: 0;
+  top: -48px;
+  left: 8%;
+  border-width: 25px;
+  border-style: solid solid solid solid;
+  border-color: transparent transparent #FFFFFF transparent;
+}
+.sleep-section .header-title,
+.diet-content .header-title {
+  font-size: 32px;
+  color: #929aaa;
+  font-weight: 500;
+}
+.sleep-section .header-logo,
+.diet-content .header-logo {
+  font-size: 34px;
+  color: #c2cada;
+}
+.sleep-section .item-list,
+.diet-content .item-list {
+  background-color: #f2f2f2;
+  padding: 0 20px;
+}
+.sleep-section .item-list .icon-sleep-time,
+.diet-content .item-list .icon-sleep-time {
+  height: 42px;
+  width: 49px;
+  background-position: 0 -1223px;
+}
+.sleep-section .item-list .icon-up-time,
+.diet-content .item-list .icon-up-time {
+  height: 47px;
+  width: 48px;
+  background-position: 0 -1289px;
+}
+.sleep-section .item-list .icon-rate,
+.diet-content .item-list .icon-rate {
+  height: 35px;
+  width: 55px;
+  background-position: 0 -1365px;
+}
+.sleep-section .item-list .icon-seelp-qual,
+.diet-content .item-list .icon-seelp-qual {
+  height: 39px;
+  width: 43px;
+  background-position: -1px -1426px;
+}
+.sleep-section .item-list .item-box,
+.diet-content .item-list .item-box {
+  height: 95px;
+  border-bottom: 1px solid #d5d6d6;
+}
+.sleep-section .item-list .list-item-title,
+.diet-content .item-list .list-item-title,
+.sleep-section .item-list .qu-time,
+.diet-content .item-list .qu-time {
+  height: 95px;
+  line-height: 95px;
+}
+.sleep-section .item-list .list-item-title,
+.diet-content .item-list .list-item-title {
+  padding-left: 35px;
+  font-size: 28px;
+  color: #252525;
+}
+.sleep-section .item-list .qu-time,
+.diet-content .item-list .qu-time {
+  font-size: 30px;
+  color: #ff5f86;
+  text-align: right;
+  margin-right: 45px;
+}
+.sleep-section .step-arrow-up,
+.diet-content .step-arrow-up {
+  left: 83%;
+}
+.sleep-section .foot-img,
+.diet-content .foot-img,
+.sleep-section .weight-img,
+.diet-content .weight-img {
+  margin: 75px auto 50px auto;
+}
+.sleep-section .foot-img,
+.diet-content .foot-img {
+  width: 124px;
+  height: 112px;
+}
+.sleep-section .step-item,
+.diet-content .step-item {
+  height: 60px;
+  padding-bottom: 50px;
+}
+.sleep-section .step-msg,
+.diet-content .step-msg,
+.sleep-section .weight-unit,
+.diet-content .weight-unit {
+  font-size: 30px;
+  color: #252525;
+  height: 60px;
+  line-height: 60px;
+}
+.sleep-section .step-msg,
+.diet-content .step-msg {
+  top: 5px;
+  left: 35px;
+}
+.sleep-section .step-value,
+.diet-content .step-value {
+  color: #ff5f86;
+  font-size: 60px;
+}
+.sleep-section .step-arrow,
+.diet-content .step-arrow {
+  top: 25%;
+  right: 28px !important;
+}
+.sleep-section .weight-arrow-up,
+.diet-content .weight-arrow-up {
+  left: 34%;
+}
+.sleep-section .weight-img,
+.diet-content .weight-img {
+  width: 130px;
+  height: 90px;
+}
+.sleep-section .weight-unit,
+.diet-content .weight-unit {
+  top: 7px;
+  right: 65px;
+}
+.sleep-section .body-status,
+.diet-content .body-status {
+  height: 160px;
+  font-size: 0;
+  /*运动完整体感受*/
+}
+.sleep-section .body-status .status-title,
+.diet-content .body-status .status-title {
+  width: 32%;
+  height: 160px;
+  line-height: 160px;
+  font-size: 28px;
+  color: #252525;
+  padding-left: 8%;
+}
+.sleep-section .body-status .status-box,
+.diet-content .body-status .status-box {
+  width: 60%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 30px;
+}
+.sleep-section .body-status .box-item,
+.diet-content .body-status .box-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+  display: inline-block;
+}
+.sleep-section .body-status .box-title,
+.diet-content .body-status .box-title {
+  font-size: 20px;
+  color: #5e6471;
+  margin-top: 10px;
+}
+.sleep-section .body-status .box-title-active,
+.diet-content .body-status .box-title-active {
+  color: #ff5f86;
+}
+.sleep-section .body-status .icon-relaxed,
+.diet-content .body-status .icon-relaxed,
+.sleep-section .body-status .icon-middle,
+.diet-content .body-status .icon-middle,
+.sleep-section .body-status .icon-hard,
+.diet-content .body-status .icon-hard,
+.sleep-section .body-status .icon-diff,
+.diet-content .body-status .icon-diff,
+.sleep-section .body-status .icon-illness,
+.diet-content .body-status .icon-illness,
+.sleep-section .body-status .icon-period,
+.diet-content .body-status .icon-period,
+.sleep-section .body-status .icon-relaxed-active,
+.diet-content .body-status .icon-relaxed-active,
+.sleep-section .body-status .icon-middle-active,
+.diet-content .body-status .icon-middle-active,
+.sleep-section .body-status .icon-hard-active,
+.diet-content .body-status .icon-hard-active,
+.sleep-section .body-status .icon-diff-active,
+.diet-content .body-status .icon-diff-active,
+.sleep-section .body-status .icon-illness-active,
+.diet-content .body-status .icon-illness-active,
+.sleep-section .body-status .icon-period-active,
+.diet-content .body-status .icon-period-active {
+  height: 56px;
+  width: 55px;
+  margin: 0 auto 10px auto;
+}
+.sleep-section .body-status .icon-relaxed,
+.diet-content .body-status .icon-relaxed {
+  /*轻松*/
+  background-position: 0 -542px;
+}
+.sleep-section .body-status .icon-middle,
+.diet-content .body-status .icon-middle {
+  /*适中*/
+  background-position: 0 -802px;
+}
+.sleep-section .body-status .icon-hard,
+.diet-content .body-status .icon-hard {
+  /*较难*/
+  background-position: 0 -888px;
+}
+.sleep-section .body-status .icon-diff,
+.diet-content .body-status .icon-diff {
+  /*很难*/
+  background-position: 0 -1057px;
+}
+.sleep-section .body-status .icon-illness,
+.diet-content .body-status .icon-illness {
+  background-position: 0px -1650px;
+}
+.sleep-section .body-status .icon-period,
+.diet-content .body-status .icon-period {
+  background-position: 0px -1785px;
+}
+.sleep-section .body-status .icon-relaxed-active,
+.diet-content .body-status .icon-relaxed-active {
+  background-position: 0 -627px;
+}
+.sleep-section .body-status .icon-middle-active,
+.diet-content .body-status .icon-middle-active {
+  background-position: 0 -717px;
+}
+.sleep-section .body-status .icon-hard-active,
+.diet-content .body-status .icon-hard-active {
+  background-position: 0 -973px;
+}
+.sleep-section .body-status .icon-diff-active,
+.diet-content .body-status .icon-diff-active {
+  background-position: 0 -1140px;
+}
+.sleep-section .body-status .icon-illness-active,
+.diet-content .body-status .icon-illness-active {
+  background-position: 0 -1718px;
+}
+.sleep-section .body-status .icon-period-active,
+.diet-content .body-status .icon-period-active {
+  background-position: 0 -1857px;
+}
+.sleep-section .diet-arrow-up,
+.diet-content .diet-arrow-up {
+  left: 58%;
+}
+.sleep-section .diet-list,
+.diet-content .diet-list {
+  height: 100%;
+  max-height: 545px;
+  overflow-y: scroll;
+}
+.sleep-section .diet-box,
+.diet-content .diet-box {
+  background-color: #f2f2f2;
+  margin-bottom: 15px;
+}
+.sleep-section .diet-box .diet-head,
+.diet-content .diet-box .diet-head {
+  height: 105px;
+  border-bottom: 2px solid #e5e5e5;
+  font-size: 0;
+}
+.sleep-section .diet-box .diet-head .diet-icon-box,
+.diet-content .diet-box .diet-head .diet-icon-box {
+  width: 20%;
+  height: auto;
+}
+.sleep-section .diet-box .diet-head .diet-icon,
+.diet-content .diet-box .diet-head .diet-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  background-color: #FFFFFF;
+  background-position: 15px -1920px;
+  margin: 22px 20px;
+}
+.sleep-section .diet-box .diet-head .diet-feel,
+.diet-content .diet-box .diet-head .diet-feel {
+  width: 80%;
+  font-size: 0;
+  display: -webkit-box;
+  display: block;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.sleep-section .diet-box .diet-head .feel-item,
+.diet-content .diet-box .diet-head .feel-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 32%;
+  display: inline-block;
+  text-align: center;
+  padding: 20px 0;
+  border-right: 1px solid #e5e5e5;
+}
+.sleep-section .diet-box .diet-head .feel-item:last-child,
+.diet-content .diet-box .diet-head .feel-item:last-child {
+  border-right: none;
+}
+.sleep-section .diet-box .diet-head .feel-title,
+.diet-content .diet-box .diet-head .feel-title,
+.sleep-section .diet-box .diet-head .item-msg,
+.diet-content .diet-box .diet-head .item-msg {
+  font-size: 26px;
+}
+.sleep-section .diet-box .diet-head .feel-title,
+.diet-content .diet-box .diet-head .feel-title {
+  color: #252525;
+}
+.sleep-section .diet-box .diet-head .item-msg,
+.diet-content .diet-box .diet-head .item-msg {
+  color: #5e6471;
+  margin-top: 5px;
+}
+.sleep-section .diet-box .diet-kind,
+.diet-content .diet-box .diet-kind {
+  background-color: #f2f2f2;
+  padding: 10px 20px;
+}
+.sleep-section .diet-box .diet-kind .diet-title,
+.diet-content .diet-box .diet-kind .diet-title,
+.sleep-section .diet-box .diet-kind .diet-info,
+.diet-content .diet-box .diet-kind .diet-info {
+  font-size: 26px;
+}
+.sleep-section .diet-box .diet-kind .diet-title,
+.diet-content .diet-box .diet-kind .diet-title {
+  color: #252525;
+  margin-right: 20px;
+}
+.sleep-section .diet-box .diet-kind .diet-info,
+.diet-content .diet-box .diet-kind .diet-info {
+  text-align: justify;
+  color: #828282;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.sleep-section .add-diet,
+.diet-content .add-diet {
+  width: 100%;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+}
+.sleep-section .add-diet .add-icon,
+.diet-content .add-diet .add-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  position: relative;
+  top: 4px;
+  background-position: 0px -1998px;
+}
+.sleep-section .add-diet .add-box,
+.diet-content .add-diet .add-box {
+  display: inline-block;
+}
+.sleep-section .add-diet .add-msg,
+.diet-content .add-diet .add-msg {
+  color: #536aea;
+  font-size: 28px;
+}
+/*滚动条*/
+/* Let's get this party started */
+.diet-list::-webkit-scrollbar,
+.foot-item-box::-webkit-scrollbar {
+  width: 6px;
+}
+/* Track */
+.diet-list::-webkit-scrollbar-track,
+.foot-item-box::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+/* Handle */
+.diet-list::-webkit-scrollbar-thumb,
+.foot-item-box::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #f96184;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+.diet-list::-webkit-scrollbar-thumb:window-inactive,
+.foot-item-box::-webkit-scrollbar-thumb:window-inactive {
+  background: #f96184;
+}
+.sleep-tips {
+  margin: 25px 4% 20px 4%;
+}
+.sleep-tips .icon-watch,
+.sleep-tips .icon-sport-watch {
+  width: 26px;
+  height: 40px;
+  background-position: 0 -1500px;
+}
+.sleep-tips .icon-sport-watch {
+  position: relative;
+  top: 10px;
+}
+.sleep-tips .tips-msg {
+  font-size: 24px;
+  color: #ababab;
+  width: 90%;
+  padding-left: 22px;
+}
+.pop-up,
+.matte {
+  -ms-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  position: absolute;
+  left: 50%;
+}
+.pop-up {
+  background-color: #FFFFFF;
+  z-index: 10;
+  width: 680px;
+  height: auto;
+  top: 25%;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  /*饮食记录*/
+}
+.pop-up .pop-header {
+  height: 95px;
+  line-height: 95px;
+  width: 100%;
+  text-align: center;
+}
+.pop-up .diet-header {
+  height: 85px;
+  line-height: 85px;
+}
+.pop-up .header-title {
+  color: #929aaa;
+  font-size: 32px;
+}
+.pop-up .header-en {
+  color: #c2cada;
+  font-size: 34px;
+}
+.pop-up .pop-content,
+.pop-up .pop-diet-content {
+  background-color: #f2f2f2;
+  width: 100%;
+}
+.pop-up .pop-content {
+  text-align: center;
+  padding: 45px 0 35px 0;
+}
+.pop-up .content-step {
+  text-align: center;
+  font-size: 60px;
+  color: #ff5f86;
+  width: 100%;
+}
+.pop-up .step-unit {
+  font-size: 36px;
+  color: #252525;
+}
+.pop-up .del-record {
+  margin-top: 40px;
+  color: #6f7585;
+  font-size: 28px;
+}
+.pop-up .pop-foot {
+  font-size: 0;
+  width: 100%;
+  padding: 20px 0;
+}
+.pop-up .content-list {
+  width: 100%;
+  height: auto;
+}
+.pop-up .diet-title {
+  height: 80px;
+  line-height: 80px;
+  padding: 0 30px;
+  border-bottom: 1px solid #d5d6d6;
+}
+.pop-up .diet-title .clearfix {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+}
+.pop-up .diet-item-title {
+  color: #252525;
+  font-size: 28px;
+}
+.pop-up .diet-time {
+  height: 80px;
+  line-height: 80px;
+  font-size: 30px;
+  color: #ff5f86;
+  text-align: right;
+  margin-right: 45px;
+}
+.pop-up .diet-arrow-pos {
+  right: 10px;
+  bottom: 26px;
+}
+.pop-up .food-kind {
+  margin-top: 10px;
+}
+.pop-up .food-kind .kind-title {
+  height: 60px;
+  line-height: 60px;
+  font-size: 28px;
+  color: #252525;
+  margin-left: 30px;
+}
+.pop-up .food-kind .foot-item-box {
+  max-height: 235px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.pop-up .food-kind .food-item {
+  padding: 0 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.pop-up .food-kind .item-header {
+  color: #000 !important;
+  font-size: 25px !important;
+}
+.pop-up .food-kind .food-title,
+.pop-up .food-kind .food-amout {
+  font-size: 24px;
+  color: #6f7585;
+  padding: 15px 0;
+}
+.pop-up .food-kind .food-title {
+  -webkit-box-flex: 6;
+  -webkit-flex: 6;
+  -ms-flex: 6;
+  flex: 6;
+  -webkit-flex-grow: 6;
+      -ms-flex-positive: 6;
+          flex-grow: 6;
+  display: inline-block;
+  text-align: left;
+  width: 70%;
+  word-wrap: break-word;
+}
+.pop-up .food-kind .food-amout {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  -webkit-flex-grow: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  word-wrap: break-word;
+  margin: 0 20px;
+  overflow: hidden;
+}
+.pop-up .food-kind .item-opt {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  -webkit-flex-grow: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  display: inline-block;
+  text-align: right;
+}
+.pop-up .food-kind .icon-del {
+  width: 34px;
+  height: 34px;
+  background-position: 0px -2047px;
+  position: relative;
+  top: 16px;
+}
+.pop-up .add-diet-box {
+  padding: 20px 30px;
+}
+.pop-up .add-diet-box .input-area {
+  width: 523px;
+  padding: 15px 81px 15px 20px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 24px;
+  border: 1px solid #bfbfbf;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+}
+.pop-up .add-diet-box .add-diet-icon {
+  width: 70px;
+  height: 70px;
+  background-position: 15px -2084px;
+  right: 31px;
+  top: 25px;
+}
+.pop-up .diet-note {
+  padding: 0 30px 10px 30px;
+}
+.pop-up .note-msg {
+  font-size: 24px;
+  color: #9b9b9b;
+}
+.pop-up .del-box {
+  width: 100%;
+  text-align: center;
+}
+.pop-up .del-diet-btn {
+  color: #cdcdcd;
+  font-size: 28px;
+  padding: 0 20px 20px 20px;
+}
+.pop-up .del-active {
+  color: #c93636;
+}
+.pop-up .foot-item {
+  width: 50%;
+  text-align: center;
+  height: auto;
+}
+.pop-up .cancel-btn,
+.pop-up .sure-btn {
+  font-size: 36px;
+  color: #FFFFFF;
+  background-color: red;
+  padding: 0 100px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+}
+.pop-up .cancel-btn {
+  background-color: #6f7585;
+}
+.pop-up .sure-btn {
+  background-color: #ff5f86;
+}
+.diet-pop-pos {
+  top: 15%;
+}
+.matte {
+  max-width: 750px;
+  width: 750px;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+.select-icon {
+  background: url("/img/wap/select-icon.png?v=1") no-repeat;
+}
+.icon-arrow {
+  position: absolute;
+  right: 5px;
+  bottom: 32px;
+  height: 22px;
+  width: 22px;
+  border: 2px solid #808080;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  overflow: hidden;
+  border-bottom: none;
+  border-left: none;
+}
+.msg-tips {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 18px 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  text-align: center;
+  -ms-transform: translate(-50%, 0) !important;
+      transform: translate(-50%, 0) !important;
+  -webkit-transform: translate(-50%, 0) !important;
+  z-index: 999;
+  font-size: 22px;
+  color: #ffffff;
+}
+.diet-add-pos {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 18px 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  position: absolute;
+  bottom: 64%;
+  left: 72%;
+  text-align: center;
+  -ms-transform: translate(-50%, 0) !important;
+      transform: translate(-50%, 0) !important;
+  -webkit-transform: translate(-50%, 0) !important;
+  z-index: 999;
+  font-size: 22px;
+  color: #ffffff;
+}
+.icon-arrow-top {
+  width: 0;
+  height: 0;
+  top: 38px;
+  right: -10%;
+  border-width: 19px;
+  border-style: solid solid solid solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+  position: absolute;
+  -ms-transform: rotate(27deg);
+      transform: rotate(27deg);
+  -webkit-transform: rotate(27deg);
+}

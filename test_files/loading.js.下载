@@ -1,0 +1,6 @@
+(function(){
+    document.write('<script src="/js/util/loading/custom.js"></script>');
+    document.write('<script src="/js/util/loading/iosOverlay.js"></script>');
+    document.write('<script src="/js/util/loading/spin.min.js"></script>');
+    document.write('<script src="/js/util/loading/prettify.js"></script>');
+}());

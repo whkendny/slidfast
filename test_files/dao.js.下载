@@ -1,0 +1,183 @@
+/**
+ * @data access object *
+ * @author quenteenfix@gmail.com *
+ * @date 2016-06-27
+ */
+/* global baidu,base_url*/
+(function (exports, undefined) {
+    var emptyFun = function () {
+
+    };
+    var mock_flag = false;
+
+    var dao = {};
+    dao.request = dao.request || {};
+    dao.test = dao.test || {};
+
+    /**************auth****************/
+    dao.login = dao.login || {};
+
+    /****************staffs******************/
+    dao.staffs = dao.staffs || {};
+
+    /****************members******************/
+    dao.members = dao.members || {};
+
+    /*****************actions***********************/
+    dao.actions = dao.actions || {};
+
+    /*********************healthData*****************/
+    dao.data = dao.data || {};
+
+    /***********************wap***********************/
+    dao.wap = dao.wap || {};
+
+
+    //test
+    dao.test = {
+        getTestData: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        }
+    }
+
+    //登陆
+    dao.login = {
+        postLoginInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        }
+    }
+
+    dao.staffs = {
+        postStaffsInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        },
+        getStaffsInfo: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        }
+    }
+    dao.members = {
+        postMembersInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        },
+        getMembersInfo: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        }
+    }
+    //动作
+    dao.actions = {
+        postActionsInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        },
+        getActionsInfo: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        }
+    }
+    //体测数据
+    dao.data = {
+        postDataInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        },
+        getDataInfo: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        }
+    }
+    /*wap站点获取数据的方法*/
+    dao.wap = {
+        postWapInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        },
+        getWapInfo: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        }
+    }
+    //分店
+    dao.branch = {
+        getBranchInfo: function (url, params, success, fail) {
+            return dao.request.get(url, params, success, fail);
+        },
+        postNewBranchInfo: function (url, params, success, fail) {
+            return dao.request.post(url, params, success, fail);
+        },
+        getBranchList: function (url, params, success, fail) {
+            var url = url ? url : '/adminapi/branch/branch-list',
+                params = params ? params : {'page':1, 'page_num':100};
+            return dao.request.get(url, params, success, fail);
+        },
+    }
+
+    dao.request = {
+        get: function (url, params, success, fail) {
+            params = params || '';
+
+            return $.ajax({
+                type: 'GET',
+                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: params|| {},
+                cache: false
+            }).then(function (data) {
+                var jsonData = data;
+                if (typeof data === 'string') {
+                    if (JSON && JSON.parse) {
+                        jsonData = JSON.parse(data);
+                    } else {
+                        jsonData = eval('(' + data + ')');
+                    }
+                }
+
+                success = success || emptyFun;
+                success(jsonData);
+            }, fail || emptyFun);
+        },
+
+        post: function (url, params, success, fail, options) {
+
+            if (typeof params === 'string') {
+                params = params || '';
+                params += '&' + M.util.getUrlFromJson(M.util.getPublicParam());
+            } else {
+                params = params || {};
+                params = M.util.lightCopy(params, M.util.getPublicParam());
+            }
+            var settings = {
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                data: params || {},
+                cache: false
+            };
+            // 若有额外的参数，添加到settings中去，目前没有判定传入的参数的有效性，需调用者保证
+            if (typeof options === 'object' && !(options instanceof Array)) {
+                options = options || {};
+                $.each(options, function (key, value) {
+                    settings[key] = value;
+                });
+            }
+
+            return $.ajax(settings).then(function (data) {
+                var jsonData = data;
+                if (typeof data === 'string' && data.length) {
+                    if (JSON && JSON.parse) {
+                        jsonData = JSON.parse(data);
+                    } else {
+                        jsonData = eval('(' + data + ')');
+                    }
+                }
+
+                if (data === '') {
+                    jsonData = {
+                        status: 1
+                    };
+                }
+                success = success || emptyFun;
+                success(jsonData);
+            }, fail || emptyFun);
+        }
+    };
+
+    exports.DAO = dao;
+})(window, undefined);
